@@ -1,13 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Apply the saved theme before first paint (default: dark) -->
+    <script>
+        try {
+            var savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "light" || savedTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", savedTheme);
+            }
+        } catch (e) { }
+
+        // Enables entrance animations; without this class nothing is ever hidden
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+            document.documentElement.classList.add("motion");
+        }
+    </script>
+
     <title>Benjamín Merchán | Desarrollador Backend Java</title>
 
     <link rel="icon" type="image/png" href="assets/favicon/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 
     <!-- Devicon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
@@ -21,314 +42,308 @@
 
 <body>
 
-    <section id="hero">
+    <header id="hero" class="hero">
+        <div class="container">
 
-        <div class="profile-wrapper">
-            <img src="assets/profile/profile.jpg" alt="Benjamin Merchan">
-        </div>
+            <!-- Shown by JS; without JS the page simply stays in the default dark theme -->
+            <button type="button" class="theme-toggle" aria-label="Activar modo claro" hidden>
+                <i class="fa-solid fa-sun" aria-hidden="true"></i>
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+            </button>
 
-        <h1>Benjamín Merchán</h1>
+            <h1>Benjamín Merchán</h1>
 
-        <h2>Desarrollador Backend Java</h2>
-
-    </section>
-
-    <section id="about">
-
-        <h2>Sobre mí</h2>
-
-        <p>
-            Técnico Universitario en Programación (UTN), orientado al desarrollo backend con Java y Spring Boot. 
-            Estoy abierto a oportunidades como Backend Developer Java para incorporarme a un equipo de desarrollo y 
-            aportar mis conocimientos.
-        </p>
-
-    </section>
-
-    <section id="technologies">
-
-        <h2>Tecnologías</h2>
-
-        <div class="tech-grid">
-
-            <article class="tech-card">
-                <img src="assets/icons/java-svgrepo-com.svg" alt="Java">
-                <span>Java</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Boot">
-                <span>Spring Boot</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Security">
-                <span>Spring Security</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Data JPA">
-                <span>Spring Data JPA</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/mysql-svgrepo-com.svg" alt="MySQL">
-                <span>MySQL</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/postgresql-logo-svgrepo-com.svg" alt="PostgreSQL">
-                <span>PostgreSQL</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/icons8-jwt.svg" alt="JWT">
-                <span>JWT</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/openapiinitiative-svgrepo-com.svg" alt="OpenAPI">
-                <span>OpenAPI</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/icons8-git.svg" alt="Git">
-                <span>Git</span>
-            </article>
+            <p class="hero-role">Desarrollador Backend Java</p>
 
         </div>
+    </header>
 
-    </section>
+    <main>
 
-    <section id="additional-skills">
+        <section id="about" class="section">
+            <div class="container section-grid">
 
-        <h2>Conocimientos adicionales</h2>
+                <h2 class="section-title">Sobre mí</h2>
 
-        <div class="tech-grid">
-
-            <article class="tech-card">
-                <img src="assets/icons/html-5-svgrepo-com.svg" alt="HTML">
-                <span>HTML</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/css-3-svgrepo-com.svg" alt="CSS">
-                <span>CSS</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/js-svgrepo-com.svg" alt="JavaScript">
-                <span>JavaScript</span>
-            </article>
-
-            <article class="tech-card">
-                <img src="assets/icons/react-svgrepo-com.svg" alt="React">
-                <span>React</span>
-            </article>
-
-        </div>
-
-    </section>
-
-    <section id="projects">
-
-        <h2>Proyecto destacado</h2>
-
-        <article class="project-card">
-
-            <div class="carousel">
-
-                <button class="carousel-btn prev">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-
-                <div class="carousel-track">
-
-                    <img src="assets/projects/tempertime/swagger-1.png" alt="Swagger 1">
-                    <img src="assets/projects/tempertime/swagger-2.png" alt="Swagger 2">
-                    <img src="assets/projects/tempertime/swagger-3.png" alt="Swagger 3">
-                    <img src="assets/projects/tempertime/github-repository.png" alt="GitHub">
-
+                <div class="section-body">
+                    <p class="lead">
+                        Técnico Universitario en Programación (UTN), orientado al desarrollo backend con Java y Spring Boot. Me enfoco en construir APIs seguras, bien probadas y documentadas.
+                    </p>
                 </div>
 
-                <button class="carousel-btn next">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-
             </div>
+        </section>
 
-            <div class="project-content">
+        <section id="technologies" class="section">
+            <div class="container section-grid">
 
-                <h3>Tempertime API</h3>
+                <h2 class="section-title">Tecnologías</h2>
 
-                <p>
-                    API REST desarrollada con Java y Spring Boot para la gestión colaborativa de grupos y eventos.
-                </p>
-
-                <p>
-                    Implementa autenticación JWT con rotación de refresh tokens, control de acceso basado en roles,
-                    sistema de invitaciones con codificación segura y manejo de zonas horarias.
-                </p>
-
-                <p>
-                    Expone 32 endpoints REST documentados con OpenAPI/Swagger y documentación técnica de 55 páginas. El
-                    proyecto cuenta con 531 pruebas automatizadas entre tests unitarios, de integración y end-to-end.
-                </p>
-
-                <h4>Tecnologías usadas</h4>
-
-                <div class="project-technologies">
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/java-svgrepo-com.svg" alt="Java">
-                        <span>Java</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Boot">
-                        <span>Spring Boot</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Security">
-                        <span>Spring Security</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/spring-svgrepo-com.svg" alt="Spring Data JPA">
-                        <span>Spring Data JPA</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/mysql-svgrepo-com.svg" alt="MySQL">
-                        <span>MySQL</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/icons8-jwt.svg" alt="JWT">
-                        <span>JWT</span>
-                    </div>
-
-                    <div class="tech-badge">
-                        <img src="assets/icons/openapiinitiative-svgrepo-com.svg" alt="OpenAPI">
-                        <span>OpenAPI</span>
-                    </div>
-
+                <div class="section-body">
+                    <ul class="tech-list">
+                        <li>Java</li>
+                        <li>Spring Boot</li>
+                        <li>Spring Security</li>
+                        <li>Spring Data JPA</li>
+                        <li>Hibernate</li>
+                        <li>APIs REST</li>
+                        <li>JWT</li>
+                        <li>SQL</li>
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>SQLite</li>
+                        <li>Flyway</li>
+                        <li>JUnit 5/6</li>
+                        <li>Mockito</li>
+                        <li>Testcontainers</li>
+                        <li>Docker</li>
+                        <li>Maven</li>
+                        <li>MapStruct</li>
+                        <li>OpenAPI / Swagger</li>
+                        <li>Git</li>
+                        <li>Claude Code</li>
+                    </ul>
                 </div>
 
-                <a href="https://github.com/benjamerc/tempertime-api" target="_blank">
+            </div>
+        </section>
 
-                    <i class="devicon-github-original colored"></i>
-                    Ver repositorio
+        <section id="additional-skills" class="section">
+            <div class="container section-grid">
 
-                </a>
+                <h2 class="section-title">Conocimientos adicionales</h2>
+
+                <div class="section-body">
+                    <ul class="tech-list tech-list--secondary">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>React</li>
+                    </ul>
+                </div>
 
             </div>
+        </section>
 
-        </article>
+        <section id="projects" class="section">
+            <div class="container section-grid">
 
-        <article class="project-card">
+                <h2 class="section-title">Proyectos</h2>
 
-            <div class="project-iframe">
-                <iframe src="https://www.youtube.com/embed/4OvU1pXQOJc" title="Tempertime Demo" allowfullscreen>
-                </iframe>
-            </div>
+                <div class="section-body project-list">
 
-            <div class="project-content">
+                    <article class="project-card">
 
-                <h3>Tempertime Frontend (React)</h3>
+                        <div class="carousel" aria-roledescription="carrusel" aria-label="Capturas de Tempertime">
 
-                <p>
-                    Frontend de demostración desarrollado con React para recorrer los principales flujos de Tempertime
-                    API.
-                </p>
+                            <div class="carousel-viewport">
+                                <div class="carousel-track">
+                                    <img src="assets/projects/tempertime/swagger-1.png" alt="Swagger 1">
+                                    <img src="assets/projects/tempertime/swagger-2.png" alt="Swagger 2">
+                                    <img src="assets/projects/tempertime/swagger-3.png" alt="Swagger 3">
+                                    <img src="assets/projects/tempertime/github-repository.png" alt="GitHub">
+                                </div>
+                            </div>
 
-                <h4>Tecnologías usadas</h4>
+                            <button type="button" class="carousel-btn prev" aria-label="Imagen anterior">
+                                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                            </button>
 
-                <div class="project-technologies">
+                            <button type="button" class="carousel-btn next" aria-label="Imagen siguiente">
+                                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                            </button>
 
-                    <div class="tech-badge">
-                        <img src="assets/icons/html-5-svgrepo-com.svg" alt="HTML">
-                        <span>HTML</span>
-                    </div>
+                            <div class="carousel-dots"></div>
 
-                    <div class="tech-badge">
-                        <img src="assets/icons/css-3-svgrepo-com.svg" alt="CSS">
-                        <span>CSS</span>
-                    </div>
+                        </div>
 
-                    <div class="tech-badge">
-                        <img src="assets/icons/js-svgrepo-com.svg" alt="JavaScript">
-                        <span>JavaScript</span>
-                    </div>
+                        <div class="project-content">
 
-                    <div class="tech-badge">
-                        <img src="assets/icons/react-svgrepo-com.svg" alt="React">
-                        <span>React</span>
-                    </div>
+                            <h3>Tempertime</h3>
+
+                            <p>
+                                Backend de una aplicación para organizar eventos en grupo, desarrollado en solitario. Una persona crea un espacio de trabajo, invita a otras con un código y les asigna eventos con fecha y hora. Cada miembro ve solo los eventos que le corresponden, filtrados por día, semana o mes en su propia zona horaria.
+                            </p>
+                            <p>
+                                <strong>Qué incluye:</strong> registro e inicio de sesión, gestión de espacios de trabajo y miembros, roles (dueño y miembro) con permisos distintos, invitaciones por código y eventos para todo el grupo o para personas específicas.
+                            </p>
+                            <p>
+                                <strong>Seguridad:</strong> autenticación con JWT (un token firmado que identifica al usuario) y refresh tokens con rotación y revocación, guardados como hash SHA-256. Contraseñas con BCrypt. Códigos de invitación protegidos con SHA-256 y cifrado AES/GCM. Control de acceso por rol dentro de cada espacio de trabajo.
+                            </p>
+                            <p>
+                                <strong>Cómo está hecho:</strong> API REST con 32 endpoints en Java 17 y Spring Boot 3, con Spring Security, Spring Data JPA, Hibernate y MySQL. Arquitectura en capas organizada por dominios, DTOs con MapStruct, validaciones, paginación, filtros y manejo global de errores con 44 códigos. Las fechas se guardan en UTC y se consultan según la zona horaria del usuario.
+                            </p>
+                            <p>
+                                <strong>Calidad:</strong> 531 tests automatizados (unitarios, de repositorio, de controladores y end-to-end) con JUnit 5 y Mockito, documentación con OpenAPI/Swagger y un manual técnico de 55 páginas.
+                            </p>
+
+                            <h4>Tecnologías usadas</h4>
+
+                            <ul class="project-technologies">
+                                <li class="tech-badge">Java</li>
+                                <li class="tech-badge">Spring Boot</li>
+                                <li class="tech-badge">Spring Security</li>
+                                <li class="tech-badge">Spring Data JPA</li>
+                                <li class="tech-badge">Hibernate</li>
+                                <li class="tech-badge">APIs REST</li>
+                                <li class="tech-badge">MySQL</li>
+                                <li class="tech-badge">JWT</li>
+                                <li class="tech-badge">MapStruct</li>
+                                <li class="tech-badge">OpenAPI / Swagger</li>
+                                <li class="tech-badge">JUnit 5</li>
+                                <li class="tech-badge">Mockito</li>
+                                <li class="tech-badge">Maven</li>
+                            </ul>
+
+                            <a class="btn" href="https://github.com/benjamerc/tempertime-api" target="_blank" rel="noopener noreferrer">
+                                <i class="devicon-github-original" aria-hidden="true"></i>
+                                Ver repositorio
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="project-card">
+
+                        <div class="project-media project-media--video">
+                            <iframe src="https://www.youtube.com/embed/4OvU1pXQOJc" title="Tempertime Demo" loading="lazy" allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <div class="project-content">
+
+                            <h3>Tempertime Frontend (React)</h3>
+
+                            <p>
+                                Frontend de demostración desarrollado con React para recorrer los principales flujos de Tempertime
+                                API.
+                            </p>
+
+                            <h4>Tecnologías usadas</h4>
+
+                            <ul class="project-technologies">
+                                <li class="tech-badge">HTML</li>
+                                <li class="tech-badge">CSS</li>
+                                <li class="tech-badge">JavaScript</li>
+                                <li class="tech-badge">React</li>
+                            </ul>
+
+                        </div>
+
+                    </article>
+
+                    <article class="project-card">
+
+                        <img class="project-media project-media--cover" src="assets/projects/joblens/joblens-tests.png"
+                            alt="JobLens tests" width="1200" height="627" loading="lazy">
+
+                        <div class="project-content">
+
+                            <h3>JobLens</h3>
+
+                            <p>
+                                Backend de una aplicación para organizar una búsqueda de empleo, en desarrollo. Una persona se registra, sube su CV en PDF y crea procesos de búsqueda con sus criterios (puesto, tecnologías, ubicación, modalidad), y el sistema guarda el historial de esos criterios. Cada proceso muestra sus ofertas con puntuación, con orden, paginación y favoritos. La integración con inteligencia artificial está prevista y aún no está implementada.
+                            </p>
+                            <p>
+                                <strong>Seguridad:</strong> JWT con refresh tokens con rotación; si se reutiliza uno ya revocado, se cierran todas las sesiones del usuario. Los tokens se guardan como hash SHA-256 y las contraseñas con BCrypt. Cada usuario solo accede a sus datos: la API usa identificadores UUID y responde el mismo 404 ante un recurso inexistente o ajeno, para no filtrar información.
+                            </p>
+                            <p>
+                                <strong>Subida de CVs:</strong> valida la firma del PDF, rechaza PDFs cifrados, limita tamaño, páginas y texto, protege contra path traversal (acceso a carpetas no permitidas) y extrae el texto con PDFBox.
+                            </p>
+                            <p>
+                                <strong>Cómo está hecho:</strong> API REST con 26 endpoints en Java 21 y Spring Boot 4, con Spring Security, Spring Data JPA, Hibernate, PostgreSQL, Flyway y Docker Compose. Monolito modular (módulos separados dentro de una misma aplicación) que se comunican solo por interfaces públicas.
+                            </p>
+                            <p>
+                                <strong>Calidad:</strong> 688 tests automatizados (unitarios, de repositorio, de controladores y de flujo completo), con más de 140 contra PostgreSQL real mediante Testcontainers. Desarrollado con Claude Code como asistente.
+                            </p>
+
+                            <h4>Tecnologías usadas</h4>
+
+                            <ul class="project-technologies">
+                                <li class="tech-badge">Java</li>
+                                <li class="tech-badge">Spring Boot</li>
+                                <li class="tech-badge">Spring Security</li>
+                                <li class="tech-badge">Spring Data JPA</li>
+                                <li class="tech-badge">Hibernate</li>
+                                <li class="tech-badge">APIs REST</li>
+                                <li class="tech-badge">PostgreSQL</li>
+                                <li class="tech-badge">Flyway</li>
+                                <li class="tech-badge">JWT</li>
+                                <li class="tech-badge">MapStruct</li>
+                                <li class="tech-badge">PDFBox</li>
+                                <li class="tech-badge">JUnit 6</li>
+                                <li class="tech-badge">Mockito</li>
+                                <li class="tech-badge">Testcontainers</li>
+                                <li class="tech-badge">Docker</li>
+                                <li class="tech-badge">Maven</li>
+                            </ul>
+
+                        </div>
+
+                    </article>
 
                 </div>
 
             </div>
+        </section>
 
-        </article>
+        <section id="education" class="section">
+            <div class="container section-grid">
 
-    </section>
+                <h2 class="section-title">Formación</h2>
 
-    <section id="education">
+                <div class="section-body">
+                    <article class="edu-card">
 
-        <h2>Formación</h2>
+                        <h3>Técnico Universitario en Programación</h3>
 
-        <article>
+                        <p>
+                            Universidad Tecnológica Nacional · Febrero 2023 – Mayo 2026 · Egresado
+                        </p>
 
-            <h3>Técnico Universitario en Programación</h3>
+                    </article>
+                </div>
 
-            <p>
-                Universidad Tecnológica Nacional · 2023 - 2026
-            </p>
+            </div>
+        </section>
 
-        </article>
+        <section id="contact" class="section">
+            <div class="container section-grid">
 
-    </section>
+                <h2 class="section-title">Contacto</h2>
 
-    <section id="contact">
+                <div class="section-body">
+                    <ul class="contact-list">
 
-        <h2>Contacto</h2>
+                        <li>
+                            <a href="mailto:benjaminmerchan1@gmail.com">
+                                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                                benjaminmerchan1@gmail.com
+                            </a>
+                        </li>
 
-        <div>
+                        <li>
+                            <a href="https://www.linkedin.com/in/benjaminmerchan/" target="_blank" rel="noopener noreferrer">
+                                <i class="devicon-linkedin-plain colored" aria-hidden="true"></i>
+                                LinkedIn
+                            </a>
+                        </li>
 
-            <a href="mailto:benjaminmerchan1@gmail.com">
+                        <li>
+                            <a href="https://github.com/benjamerc" target="_blank" rel="noopener noreferrer">
+                                <i class="devicon-github-original" aria-hidden="true"></i>
+                                GitHub
+                            </a>
+                        </li>
 
-                <i class="fa-solid fa-envelope"></i>
-                benjaminmerchan1@gmail.com
+                    </ul>
+                </div>
 
-            </a>
+            </div>
+        </section>
 
-        </div>
-
-        <div>
-
-            <a href="https://www.linkedin.com/in/benjaminmerchan/" target="_blank">
-
-                <i class="devicon-linkedin-plain colored"></i>
-                LinkedIn
-
-            </a>
-
-        </div>
-
-        <div>
-
-            <a href="https://github.com/benjamerc" target="_blank">
-
-                <i class="devicon-github-original colored"></i>
-                GitHub
-
-            </a>
-
-        </div>
-
-    </section>
+    </main>
 
     <script src="js/script.js"></script>
 
